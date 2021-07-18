@@ -1,6 +1,7 @@
 HELP.md
 .gradle
 build/
+httpclient/http-client.private.env.json
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/

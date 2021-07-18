@@ -1,0 +1,15 @@
+### Obtain access token
+POST {{url}}/public/token
+Content-Type: application/json
+
+{
+  "username": "whsv26@gmail.com",
+  "password": "123456"
+}
+
+> {% client.global.set("token", response.headers.valueOf("Authorization")); %}
+
+
+### Hello world
+GET {{url}}/hello?name=whsv26
+Authorization: Bearer {{token}}

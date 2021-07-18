@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.5.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+
+    id "org.flywaydb.flyway" version "7.11.2"
 }
 
 group = 'org.whsv26'
@@ -21,6 +23,7 @@ dependencies {
 
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
 	implementation 'org.projectlombok:lombok:1.18.20'
+	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -28,6 +31,20 @@ dependencies {
 
 	implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
 	implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.2'
+    implementation 'com.h2database:h2:1.4.200'
+
+    implementation "org.postgresql:postgresql"
+    implementation 'org.flywaydb:flyway-core:7.11.2'
+}
+
+flyway {
+    // Flyway plugin configuration
+    driver = 'org.postgresql.Driver'
+    url = 'jdbc:postgresql://localhost:54326/docker'
+    user = 'docker'
+    password = 'docker'
 }
 
 test {
@@ -36,6 +53,6 @@ test {
 
 task hello {
 	doLast {
-		println 'asd'
+		println 'hello'
 	}
 }

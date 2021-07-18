@@ -1,4 +1,4 @@
-package org.whsv26.pnmemory.domain.entity;
+package org.whsv26.pnmemory.domain.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

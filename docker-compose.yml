@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  postgres:
+    container_name: postgres_pnmemory
+    image: postgres:13
+    volumes:
+      - volume_postgres:/var/lib/postgresql/data
+    ports:
+      - 54326:5432
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: docker
+    command: postgres -c log_statement=all
+
+volumes:
+  volume_postgres:

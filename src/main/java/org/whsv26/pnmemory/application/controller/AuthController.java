@@ -14,7 +14,7 @@ import org.whsv26.pnmemory.application.dto.input.AuthInput;
 import org.whsv26.pnmemory.application.dto.output.UserView;
 import org.whsv26.pnmemory.infrastructure.service.security.JwtService;
 import org.whsv26.pnmemory.domain.mapper.UserMapper;
-import org.whsv26.pnmemory.domain.entity.User;
+import org.whsv26.pnmemory.domain.model.User;
 import javax.validation.Valid;
 
 @RestController

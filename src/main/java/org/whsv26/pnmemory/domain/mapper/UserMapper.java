@@ -2,7 +2,7 @@ package org.whsv26.pnmemory.domain.mapper;
 
 import org.mapstruct.Mapper;
 import org.whsv26.pnmemory.application.dto.output.UserView;
-import org.whsv26.pnmemory.domain.model.User;
+import org.whsv26.pnmemory.domain.entity.User;
 import java.util.List;
 
 @Mapper(componentModel = "spring")

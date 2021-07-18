@@ -1,18 +1,19 @@
-package org.whsv26.pnmemory.config.security;
+package org.whsv26.pnmemory.infrastructure.service.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
-import org.whsv26.pnmemory.domain.model.User;
+import org.whsv26.pnmemory.domain.entity.User;
 import io.jsonwebtoken.Jwts;
 import java.util.Date;
 
 @Component
-public class JwtTokenUtil {
+public class JwtServiceImpl implements JwtService {
   private final String jwtSecret = "zdtlD3JK56m6wTTgsNFhqzjqP";
   private final String jwtIssuer = "whsv26";
 
+  @Override
   public String generateAccessToken(User user) {
     return Jwts.builder()
         .setSubject(String.format("%s", user.getUsername()))
@@ -23,21 +24,17 @@ public class JwtTokenUtil {
         .compact();
   }
 
-  public Claims parseClaims(String token) {
-    return Jwts.parser()
-        .setSigningKey(jwtSecret)
-        .parseClaimsJws(token)
-        .getBody();
-  }
-
+  @Override
   public String getUserName(String token) {
     return parseClaims(token).getSubject();
   }
 
+  @Override
   public Date getExpirationDate(String token) {
     return parseClaims(token).getExpiration();
   }
 
+  @Override
   public boolean validate(String token) {
     try {
       Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
@@ -45,5 +42,12 @@ public class JwtTokenUtil {
     } catch (JwtException e) {
       return false;
     }
+  }
+
+  private Claims parseClaims(String token) {
+    return Jwts.parser()
+        .setSigningKey(jwtSecret)
+        .parseClaimsJws(token)
+        .getBody();
   }
 }

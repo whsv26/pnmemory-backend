@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.whsv26.pnmemory.application.dto.input.AuthInput;
 import org.whsv26.pnmemory.application.dto.output.UserView;
-import org.whsv26.pnmemory.config.security.JwtTokenUtil;
+import org.whsv26.pnmemory.infrastructure.service.security.JwtService;
 import org.whsv26.pnmemory.domain.mapper.UserMapper;
-import org.whsv26.pnmemory.domain.model.User;
+import org.whsv26.pnmemory.domain.entity.User;
 import javax.validation.Valid;
 
 @RestController
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RequestMapping(path = "api/public")
 public class AuthController {
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenUtil jwtTokenUtil;
+    private final JwtService jwtTokenUtil;
     private final UserMapper userMapper;
 
     @PostMapping("token")

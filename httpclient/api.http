@@ -9,6 +9,15 @@ Content-Type: application/json
 
 > {% client.global.set("token", response.headers.valueOf("Authorization")); %}
 
+### Register
+POST {{url}}/public/register
+Content-Type: application/json
+
+{
+  "username": "whsv26@gmail.com",
+  "password": "123456",
+  "rePassword": "123456"
+}
 
 ### Hello world
 GET {{url}}/hello?name=whsv26

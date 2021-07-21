@@ -39,19 +39,4 @@ public class AuthController {
             .header(HttpHeaders.AUTHORIZATION, jwtTokenUtil.generateAccessToken(user))
             .body(userOutputMapper.toUserOutput(user));
     }
-
-//  @PostMapping("token")
-//  public ResponseEntity<UserView> token(@RequestBody @Valid AuthInput input) {
-//    UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-//        input.username(),
-//        input.password()
-//    );
-//
-//    Authentication authentication = authenticationManager.authenticate(token);
-//    User user = (User) authentication.getPrincipal();
-//
-//    return ResponseEntity.ok()
-//        .header(HttpHeaders.AUTHORIZATION, jwtTokenUtil.generateAccessToken(user))
-//        .body(userMapper.toUserView(user));
-//  }
 }

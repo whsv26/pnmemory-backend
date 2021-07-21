@@ -16,7 +16,7 @@ public class JwtServiceImpl implements JwtService {
   public String generateAccessToken(User user) {
     return Jwts.builder()
         .setSubject(String.format("%s", user.getUsername()))
-        .setIssuer("whsv26.org")
+        .setIssuer("whsv26")
         .setIssuedAt(new Date())
         .setExpiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000))
         .signWith(SignatureAlgorithm.HS512, jwtSecret)

@@ -12,7 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.whsv26.pnmemory.domain.model.User;
+import org.whsv26.pnmemory.domain.repository.UserRepository;
 import javax.servlet.http.HttpServletResponse;
 
 @Configuration
@@ -20,10 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final JwtFilter jwtTokenFilter;
+  private final UserRepository userRepository;
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(username -> new User());
+    auth.userDetailsService(username -> userRepository.findByUsername(username).orElse(null));
   }
 
   @Override

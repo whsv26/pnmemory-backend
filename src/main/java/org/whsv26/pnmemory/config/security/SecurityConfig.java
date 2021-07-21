@@ -12,7 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.whsv26.pnmemory.domain.repository.UserRepository;
+import org.whsv26.pnmemory.domain.security.repository.UserRepository;
 import javax.servlet.http.HttpServletResponse;
 
 @Configuration

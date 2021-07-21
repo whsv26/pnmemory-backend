@@ -1,11 +1,13 @@
-package org.whsv26.pnmemory.infrastructure.service.security;
+package org.whsv26.pnmemory.infrastructure.security.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
-import org.whsv26.pnmemory.domain.model.User;
+import org.whsv26.pnmemory.domain.security.model.User;
 import io.jsonwebtoken.Jwts;
+import org.whsv26.pnmemory.domain.security.service.JwtService;
+
 import java.util.Date;
 
 @Component

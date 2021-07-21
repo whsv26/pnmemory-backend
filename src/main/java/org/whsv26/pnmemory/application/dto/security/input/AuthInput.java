@@ -1,4 +1,4 @@
-package org.whsv26.pnmemory.application.dto.input;
+package org.whsv26.pnmemory.application.dto.security.input;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;

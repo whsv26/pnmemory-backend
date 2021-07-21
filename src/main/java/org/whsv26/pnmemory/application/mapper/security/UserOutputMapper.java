@@ -1,8 +1,8 @@
-package org.whsv26.pnmemory.domain.mapper;
+package org.whsv26.pnmemory.application.mapper.security;
 
 import org.mapstruct.Mapper;
-import org.whsv26.pnmemory.application.dto.output.UserOutput;
-import org.whsv26.pnmemory.domain.model.User;
+import org.whsv26.pnmemory.application.dto.security.output.UserOutput;
+import org.whsv26.pnmemory.domain.security.model.User;
 import java.util.List;
 
 @Mapper(componentModel = "spring")

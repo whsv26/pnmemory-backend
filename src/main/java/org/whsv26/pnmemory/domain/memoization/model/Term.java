@@ -1,4 +1,4 @@
-package org.whsv26.pnmemory.domain.model;
+package org.whsv26.pnmemory.domain.memoization.model;
 
 import lombok.Data;
 import javax.persistence.Entity;

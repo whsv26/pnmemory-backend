@@ -1,4 +1,4 @@
-package org.whsv26.pnmemory.application.controller;
+package org.whsv26.pnmemory.application.controller.memoization;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

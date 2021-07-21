@@ -1,7 +1,7 @@
-package org.whsv26.pnmemory.infrastructure.service.security;
+package org.whsv26.pnmemory.domain.security.service;
 
 import org.springframework.stereotype.Component;
-import org.whsv26.pnmemory.domain.model.User;
+import org.whsv26.pnmemory.domain.security.model.User;
 import java.util.Date;
 
 @Component

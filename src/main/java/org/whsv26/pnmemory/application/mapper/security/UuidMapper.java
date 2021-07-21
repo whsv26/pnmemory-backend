@@ -1,4 +1,4 @@
-package org.whsv26.pnmemory.domain.mapper;
+package org.whsv26.pnmemory.application.mapper.security;
 
 import org.mapstruct.Mapper;
 import java.util.UUID;

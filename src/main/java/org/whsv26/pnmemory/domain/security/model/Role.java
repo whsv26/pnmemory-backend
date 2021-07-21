@@ -1,4 +1,4 @@
-package org.whsv26.pnmemory.domain.model;
+package org.whsv26.pnmemory.domain.security.model;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

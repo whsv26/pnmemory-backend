@@ -1,8 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.2'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-
+    id 'org.springframework.boot' version '2.5.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
     id "org.flywaydb.flyway" version "7.11.2"
 }
 
@@ -11,26 +10,26 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '16'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 
-	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
-	implementation 'org.projectlombok:lombok:1.18.20'
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    implementation 'org.projectlombok:lombok:1.18.20'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
-	implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
-	implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.2'
     implementation 'com.h2database:h2:1.4.200'
@@ -48,11 +47,11 @@ flyway {
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 task hello {
-	doLast {
-		println 'hello'
-	}
+    doLast {
+        println 'hello'
+    }
 }

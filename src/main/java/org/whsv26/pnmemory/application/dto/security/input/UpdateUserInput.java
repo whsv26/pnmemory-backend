@@ -7,5 +7,6 @@ import javax.validation.constraints.Email;
 public class UpdateUserInput {
   @Email
   private String username;
+
   private String password;
 }

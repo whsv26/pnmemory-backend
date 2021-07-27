@@ -7,7 +7,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 public class CreateUserInput {
-  @Email @NotNull
+  @Email
+  @NotNull
   String username;
 
   @NotNull

@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.whsv26.pnmemory.domain.security.model.User;
 import org.whsv26.pnmemory.domain.security.repository.UserRepository;
 import org.whsv26.pnmemory.infrastructure.security.service.JwtServiceImpl;
 import javax.servlet.FilterChain;
@@ -33,32 +31,33 @@ public class JwtFilter extends OncePerRequestFilter {
       HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
 
-    final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-
-    if (isEmpty(header) || !header.startsWith("Bearer ")) {
-      filterChain.doFilter(request, response);
-      return;
-    }
-
-    String token = header.replace("Bearer ", "");
-
-    if (!jwtTokenUtil.validate(token)) {
-      filterChain.doFilter(request, response);
-      return;
-    }
-
-    String username = jwtTokenUtil.getUserName(token);
-    Optional<User> user = userRepository.findByUsername(username);
-    UserDetails principal = user.get();
-
-    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-        principal, null, of()
-    );
-
-    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-    SecurityContextHolder.getContext().setAuthentication(authentication);
+    getAuthorizationHeader(request)
+        .map((hdr) -> hdr.replace("Bearer ", ""))
+        .flatMap(this::validateToken)
+        .map(jwtTokenUtil::getUserName)
+        .flatMap(userRepository::findByUsername)
+        .map((principal) -> new UsernamePasswordAuthenticationToken(
+            principal, null, of()
+        ))
+        .map((authentication) -> {
+          authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+          SecurityContextHolder.getContext().setAuthentication(authentication);
+          return authentication;
+        });
 
     filterChain.doFilter(request, response);
+  }
+
+  private Optional<String> getAuthorizationHeader(HttpServletRequest request) {
+    final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
+    return isEmpty(header) || !header.startsWith("Bearer ")
+        ? Optional.empty()
+        : Optional.of(header);
+  }
+
+  private Optional<String> validateToken(String token) {
+    return jwtTokenUtil.validate(token)
+      ? Optional.of(token)
+      : Optional.empty();
   }
 }

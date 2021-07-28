@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "api/public")
-public class RegisterAction {
+public class CreateUserAction {
   private final UserOutputMapper userOutputMapper;
   private final UserService userService;
 

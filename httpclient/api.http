@@ -19,6 +19,16 @@ Content-Type: application/json
   "rePassword": "123456"
 }
 
+### Update user
+PATCH {{url}}/users
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "username": "whsv26@gmail.com",
+  "password": "123456"
+}
+
 ### Hello world
 GET {{url}}/hello?name=whsv26
 Authorization: Bearer {{token}}

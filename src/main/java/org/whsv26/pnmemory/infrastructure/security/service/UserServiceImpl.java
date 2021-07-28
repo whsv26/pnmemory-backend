@@ -9,6 +9,7 @@ import org.whsv26.pnmemory.domain.security.service.UserService;
 import org.whsv26.pnmemory.application.mapper.security.UserInputMapper;
 import org.whsv26.pnmemory.domain.security.model.User;
 import org.whsv26.pnmemory.domain.security.repository.UserRepository;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,8 +28,19 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User update(UpdateUserInput input) {
-    // TODO
-    return null;
+  public Optional<User> update(UpdateUserInput input, String username) {
+    return userRepository.findByUsername(username)
+        .map((user) -> userInputMapper.update(input, user))
+        .map((user) -> {
+          String plainPass = input.getPassword();
+          String hashedPass = plainPass.equals(user.getPassword())
+              ? passwordEncoder.encode(user.getPassword())
+              : user.getPassword();
+
+          user.setPassword(hashedPass);
+          userRepository.save(user);
+
+          return user;
+        });
   }
 }

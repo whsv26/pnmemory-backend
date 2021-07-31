@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
   public Optional<FcmToken> refreshFcmToken(String token, String username) {
     return userRepository.findByUsername(username)
         .map((user) -> {
-          FcmToken t = null == user.getFcmToken()
+          FcmToken t = (null == user.getFcmToken())
               ? new FcmToken(user, token)
               : user.getFcmToken();
 

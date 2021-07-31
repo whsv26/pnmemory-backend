@@ -16,16 +16,17 @@ public class FcmToken {
   @GeneratedValue
   private UUID id;
 
-  public FcmToken(User user, String token) {
-    this.user = user;
-    this.token = token;
-  }
-
   @NotNull
   @OneToOne(cascade = CascadeType.ALL)
   private User user;
 
   @Setter
   @NotNull
+  @Column(length = 500)
   private String token;
+
+  public FcmToken(User user, String token) {
+    this.user = user;
+    this.token = token;
+  }
 }

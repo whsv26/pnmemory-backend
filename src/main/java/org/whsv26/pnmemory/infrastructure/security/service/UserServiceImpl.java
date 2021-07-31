@@ -5,6 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.whsv26.pnmemory.application.dto.security.input.CreateUserInput;
 import org.whsv26.pnmemory.application.dto.security.input.UpdateUserInput;
+import org.whsv26.pnmemory.domain.security.model.FcmToken;
+import org.whsv26.pnmemory.domain.security.repository.FcmTokenRepository;
 import org.whsv26.pnmemory.domain.security.service.UserService;
 import org.whsv26.pnmemory.application.mapper.security.UserInputMapper;
 import org.whsv26.pnmemory.domain.security.model.User;
@@ -15,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
   private final UserRepository userRepository;
+  private final FcmTokenRepository fcmTokenRepository;
   private final UserInputMapper userInputMapper;
   private final PasswordEncoder passwordEncoder;
 
@@ -41,6 +44,20 @@ public class UserServiceImpl implements UserService {
           userRepository.save(user);
 
           return user;
+        });
+  }
+
+  @Override
+  public Optional<FcmToken> refreshFcmToken(String token, String username) {
+    return userRepository.findByUsername(username)
+        .map((user) -> {
+          FcmToken t = null == user.getFcmToken()
+              ? new FcmToken(user, token)
+              : user.getFcmToken();
+
+          t.setToken(token);
+
+          return fcmTokenRepository.save(t);
         });
   }
 }

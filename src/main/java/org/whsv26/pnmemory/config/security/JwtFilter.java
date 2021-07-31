@@ -31,7 +31,7 @@ public class JwtFilter extends OncePerRequestFilter {
       HttpServletResponse response,
       FilterChain filterChain) throws ServletException, IOException {
 
-    getAuthorizationHeader(request)
+    extractAuthorizationHeader(request)
         .map((hdr) -> hdr.replace("Bearer ", ""))
         .flatMap(this::validateToken)
         .map(jwtTokenUtil::getUserName)
@@ -48,7 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
     filterChain.doFilter(request, response);
   }
 
-  private Optional<String> getAuthorizationHeader(HttpServletRequest request) {
+  private Optional<String> extractAuthorizationHeader(HttpServletRequest request) {
     final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
     return isEmpty(header) || !header.startsWith("Bearer ")
         ? Optional.empty()
@@ -57,7 +57,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
   private Optional<String> validateToken(String token) {
     return jwtTokenUtil.validate(token)
-      ? Optional.of(token)
-      : Optional.empty();
+        ? Optional.of(token)
+        : Optional.empty();
   }
 }

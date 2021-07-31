@@ -29,6 +29,11 @@ Authorization: Bearer {{token}}
   "password": "123456"
 }
 
-### Hello world
-GET {{url}}/hello?name=whsv26
+### Refresh FCM token
+PATCH {{url}}/fcm/refresh
+Content-Type: application/json
 Authorization: Bearer {{token}}
+
+{
+  "fcmToken": "testfcmtoken1"
+}

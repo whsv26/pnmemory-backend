@@ -1,22 +1,18 @@
 package org.whsv26.pnmemory.domain.security.model;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import static org.whsv26.pnmemory.domain.security.model.Role.RoleEnum.ROLE_USER;
 
 @Data
 @Entity
 @Table(name = "users")
-@RequiredArgsConstructor
 public class User implements UserDetails {
   @Id
   @GeneratedValue
@@ -28,6 +24,13 @@ public class User implements UserDetails {
 
   @NotNull
   private String password;
+
+  @OneToOne(mappedBy = "user")
+  private FcmToken fcmToken;
+
+  public FcmToken getFcmToken() {
+    return fcmToken;
+  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

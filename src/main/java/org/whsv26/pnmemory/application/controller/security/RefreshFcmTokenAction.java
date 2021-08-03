@@ -14,7 +14,7 @@ import java.security.Principal;
 public class RefreshFcmTokenAction {
   private final UserService userService;
 
-  @PatchMapping("fcm/refresh")
+  @PutMapping("fcm/refresh")
   public ResponseEntity<?> execute(
       Principal principal,
       @RequestBody @Valid RefreshFcmTokenInput input) {

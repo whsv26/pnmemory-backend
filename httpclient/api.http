@@ -30,7 +30,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Refresh FCM token
-PATCH {{url}}/fcm/refresh
+PUT {{url}}/fcm/refresh
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
